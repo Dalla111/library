@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Folders Side by Side</title>
+    <style>
+        /* Page Styling */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
+        }
+
+.border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 5px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://via.placeholder.com/1500'); /* Your image URL here */
+    background-size: cover; /* Ensures the image covers the whole container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    animation: colorChange 5s linear infinite;
+    background-image: url('https://imgs.search.brave.com/JkYfAENsxyaSTnHFvw8zk8WDK5GWThbptTvCn9ZFpuA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzgwLzc0LzQ3/LzM2MF9GXzc4MDc0/NDczOV9HcFlHcTEy/ak5jV1lLbkZWcjNI/d2ZlcmVUYUIxb2lU/WS5qcGc');
+}
+
+        .border:before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 5px solid transparent;
+            background: linear-gradient(#f3f4f6, #f3f4f6) padding-box,
+                        linear-gradient(135deg, #4caf50, #ff5722, #2196f3, #ffeb3b) border-box;
+            z-index: -1;
+        }
+
+        .center-text {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Flexbox for dropdowns */
+        .dropdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px; /* Space between dropdowns */
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Animated Image */
+        .dropdown img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 5px solid transparent;
+            background: linear-gradient(45deg, #4caf50, #ff5722, #2196f3, #ffeb3b);
+            animation: imageGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes imageGlow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(255, 87, 34, 0.8);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(33, 150, 243, 0.8);
+            }
+        }
+
+        /* Animated Button */
+        .dropdown button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(90deg, #ff5722, #4caf50, #2196f3);
+            animation: buttonColorChange 4s infinite;
+        }
+
+        @keyframes buttonColorChange {
+            0% { background: linear-gradient(90deg, #ff5722, #4caf50, #2196f3); }
+            50% { background: linear-gradient(90deg, #2196f3, #ffeb3b, #4caf50); }
+            100% { background: linear-gradient(90deg, #ff5722, #4caf50, #2196f3); }
+        }
+
+        .dropdown button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Dropdown Content */
+        .dropdown-content {
+            display: none;
+            margin-top: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #333;
+            padding: 10px;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <script>
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</head>
+<body>
+    <div class="border">
+        <h1 class="center-text">
+<image src="https://jwalamukhi.iitd.ac.in/images/Jwala_logo_extra_small_2.png" >Welcome Buddy</h1>
+
+        <!-- Container for Dropdowns -->
+        <div class="dropdown-container">
+            <!-- Dropdown Folder 1 -->
+            <div class="dropdown">
+                <img src="https://imgs.search.brave.com/NK4oFEDIpfgzk_c2lwvqLOQW7nzEfK6UiH-VR5C4zBc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvODYw/NDIwMjAyL3Bob3Rv/L2EtZGFpbHktZXhw/cmVzcy1lbXBsb3ll/ZS1icm93c2luZy10/aGUtbmV3c3BhcGVy/cy1waWN0dXJlLWxp/YnJhcnktY29sbGVj/dGlvbi11ay0zcmQt/bWFyY2gtMTk2Ny5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/Y1Bmb3JieHRsRGtz/UFNKMVdWYUVPRUVm/eVhFaTRlMWNaVlJ6/SEFvcUJOWT0" alt="Folder Image 1">
+                <button onclick="toggleDropdown('dropdown1')">Explore Library</button>
+                <div id="dropdown1" class="dropdown-content">
+                    <a href="romantic.html">romantic</a>
+                    <a href="japanese.html">japanese 2</a>
+                    <a href="#">From production</a>
+                </div>
+            </div>
+
+            <!-- Dropdown Folder 2 -->
+            <div class="dropdown">
+                <img src="https://imgs.search.brave.com/JBexUYORCF7uAwRaNGjMctz_vuWUxapQBBXxZcvcdYU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zYXlo/dWVxdWUuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIxLzAy/L2NhbGFmYXRlLWFy/Z2VudGluYS03Njh4/NTAxLmpwZw" alt="Folder Image 2">
+                <button onclick="toggleDropdown('dropdown2')">Explore Country</button>
+                <div id="dropdown2" class="dropdown-content">
+                    <a href="#">Russia</a>
+                    <a href="final.html">U.S.A </a>
+                    <a href="japanese.html">Japanese </a>
+                </div>
+            </div>
+
+            <!-- Dropdown Folder 3 -->
+            <div class="dropdown">
+                <img src="https://imgs.search.brave.com/OhyUDb16kh03Hg1Nl9ja0HXYHEwm1tL7h09WqhQfqcw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDc5/OTEwMjE0L3Bob3Rv/L3dhdGVyY29sb3It/cG9ydHJhaXQuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPTh3/Rkl2YlB3NTNfSzNR/cjRyeWU4d2NJTWhi/UXRPcVV4N1AwSEVo/d19lbWM9">
+                <button ><a href="new.html">Explore Models</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
